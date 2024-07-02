@@ -93,5 +93,33 @@ int main (int argc, char* argv[])
     fread(&fileInfo, sizeof(fileInfo.Size), 1, file);
     fread(&fileInfo.Width, fileInfo.Size - sizeof(fileInfo.Size), 1, file);
     fclose(file);
+
+    // printf("Size:%u\n", fileHeader.Size);
+    // printf("Width/Height:%dx%d\n", fileInfo.Width, fileInfo.Height);
+    // printf("Bit Count:%u\n", fileInfo.BitCount);
+    // printf("Compression:%u\n", fileInfo.Compression);
+    // printf("Size image:%u\n", fileInfo.SizeImage);
+    // printf("Pels per metr:%dx%d\n", fileInfo.XPelsPerMetr, fileInfo.YPelsPerMetr);
+    // printf("Clr used:%u\n", fileInfo.ClrUsed);
+    // printf("Clr important:%u\n", fileInfo.ClrImportant);
+
+    printf("+-------------------+-------------------+\n");
+    printf("| %-17s | %17u |\n", "Size", fileHeader.Size);
+    printf("+-------------------+-------------------+\n");
+    printf("| %-17s | %8d x %-7d|\n", "Width/Height", fileInfo.Width, fileInfo.Height);
+    printf("+-------------------+-------------------+\n");
+    printf("| %-17s | %17u |\n", "Bit Count", fileInfo.BitCount);
+    printf("+-------------------+-------------------+\n");
+    printf("| %-17s | %17u |\n", "Compression", fileInfo.Compression);
+    printf("+-------------------+-------------------+\n");
+    printf("| %-17s | %17u |\n", "Size image", fileInfo.SizeImage);
+    printf("+-------------------+-------------------+\n");
+    printf("| %-17s | %8d x %-7d|\n", "Pels per meter", fileInfo.XPelsPerMetr, fileInfo.YPelsPerMetr);
+    printf("+-------------------+-------------------+\n");
+    printf("| %-17s | %17u |\n", "Clr used", fileInfo.ClrUsed);
+    printf("+-------------------+-------------------+\n");
+    printf("| %-17s | %17u |\n", "Clr important", fileInfo.ClrImportant);
+    printf("+-------------------+-------------------+\n");
+
     return 0;
 }
