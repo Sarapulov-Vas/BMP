@@ -120,6 +120,39 @@ int main (int argc, char* argv[])
     printf("+-------------------+-------------------+\n");
     printf("| %-17s | %17u |\n", "Clr important", fileInfo.ClrImportant);
     printf("+-------------------+-------------------+\n");
+    if (fileInfo.Size == 40)
+    {
+        return 0;
+    }
 
+    printf("| %-17s | %17u |\n", "Red mask", fileInfo.RedMask);
+    printf("+-------------------+-------------------+\n");
+    printf("| %-17s | %17u |\n", "Green mask", fileInfo.GreenMask);
+    printf("+-------------------+-------------------+\n");
+    printf("| %-17s | %17u |\n", "Blue mask", fileInfo.BlueMask);
+    printf("+-------------------+-------------------+\n");
+    printf("| %-17s | %17u |\n", "Alpha mask", fileInfo.AlphaMask);
+    printf("+-------------------+-------------------+\n");
+    printf("| %-17s | %17u |\n", "CSType", fileInfo.CSType);
+    // EndPoints
+    printf("+-------------------+-------------------+\n");
+    printf("| %-17s | %17u |\n", "Gamma red", fileInfo.GammaRed);
+    printf("+-------------------+-------------------+\n");
+    printf("| %-17s | %17u |\n", "Gamma green", fileInfo.GammaGreen);
+    printf("+-------------------+-------------------+\n");
+    printf("| %-17s | %17u |\n", "Gamma blue", fileInfo.GammaBlue);
+    printf("+-------------------+-------------------+\n");
+    if (fileHeader.Size == 108) {
+        return 0;
+    }
+
+    printf("| %-17s | %17u |\n", "Intent", fileInfo.Intent);
+    printf("+-------------------+-------------------+\n");
+    printf("| %-17s | %17u |\n", "Profile data", fileInfo.ProfileData);
+    printf("+-------------------+-------------------+\n");
+    printf("| %-17s | %17u |\n", "Profile size", fileInfo.ProfileSize);
+    printf("+-------------------+-------------------+\n");
+    printf("| %-17s | %17u |\n", "Reserved", fileInfo.Reserved);
+    printf("+-------------------+-------------------+\n");
     return 0;
 }
