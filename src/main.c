@@ -52,7 +52,7 @@ struct BMPInfo
     uint32_t GammaBlue;
 
     uint32_t Intent;
-    uint16_t ProfileData;
+    uint32_t ProfileData;
     uint32_t ProfileSize;
     uint32_t Reserved;
 };
@@ -90,8 +90,8 @@ int main (int argc, char* argv[])
         return 1;
     }
 
-    fread(&fileInfo, sizeof(fileInfo), 1, file);
-
+    fread(&fileInfo, sizeof(fileInfo.Size), 1, file);
+    fread(&fileInfo.Width, fileInfo.Size - sizeof(fileInfo.Size), 1, file);
     fclose(file);
     return 0;
 }
