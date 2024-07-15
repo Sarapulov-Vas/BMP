@@ -101,7 +101,7 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    if (readFile(argv[2], &fileHeader, &fileInfo) == 1) {
+    if (readFile(argv[1], &fileHeader, &fileInfo) == 1) {
         return 1;
     }
 
