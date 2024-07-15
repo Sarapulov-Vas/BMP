@@ -1,22 +1,22 @@
 #include "main.h"
 #include <stdio.h>
 
-int readFile(char *path, struct BMPFileHeader fileHeader,
-             struct BMPInfo fileInfo) {
+int readFile(char *path, struct BMPFileHeader *fileHeader,
+             struct BMPInfo *fileInfo) {
     FILE *file = fopen(path, "r");
     if (file == NULL) {
         fprintf(stderr, "The input file open failed.\n");
         return 1;
     }
 
-    fread(&fileHeader, sizeof(fileHeader), 1, file);
-    if (fileHeader.Type[0] != 'B' || fileHeader.Type[1] != 'M') {
+    fread(fileHeader, sizeof(*fileHeader), 1, file);
+    if (fileHeader->Type[0] != 'B' || fileHeader->Type[1] != 'M') {
         fprintf(stderr, "The file is not a BMP file.\n");
         return 1;
     }
 
-    fread(&fileInfo.Size, sizeof(fileInfo.Size), 1, file);
-    fread(&fileInfo.Width, fileInfo.Size - sizeof(fileInfo.Size), 1, file);
+    fread(fileInfo, sizeof(fileInfo->Size), 1, file);
+    fread(&fileInfo->Width, fileInfo->Size - sizeof(fileInfo->Size), 1, file);
     fclose(file);
     return 0;
 }
@@ -91,15 +91,6 @@ void printHeader(struct BMPFileHeader fileHeader, struct BMPInfo fileInfo) {
     if (fileInfo.Size == Version_4_Size) {
         return;
     }
-
-    printf("| %-25s | %25u |\n", "Intent", fileInfo.Intent);
-    Print_Line();
-    printf("| %-25s | %25u |\n", "Profile data", fileInfo.ProfileData);
-    Print_Line();
-    printf("| %-25s | %25u |\n", "Profile size", fileInfo.ProfileSize);
-    Print_Line();
-    printf("| %-25s | %25u |\n", "Reserved", fileInfo.Reserved);
-    Print_Line();
 }
 
 int main(int argc, char *argv[]) {
@@ -110,7 +101,7 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    if (readFile(argv[1], fileHeader, fileInfo) == 1) {
+    if (readFile(argv[2], &fileHeader, &fileInfo) == 1) {
         return 1;
     }
 

@@ -6,7 +6,7 @@
 #define Print_Line() printf("+---------------------------+---------------------------+\n")
 #pragma pack(push, 1)
 struct BMPFileHeader {
-    uint8_t Type[2];
+    char Type[2];
     uint32_t Size;
     uint16_t Reserved1;
     uint16_t Reserved2;
@@ -54,4 +54,4 @@ struct BMPInfo {
 
 #pragma pack(pop)
 void printHeader(struct BMPFileHeader fileHeader, struct BMPInfo fileInfo);
-int readFile(char *path, struct BMPFileHeader fileHeader, struct BMPInfo fileInfo);
+int readFile(char *path, struct BMPFileHeader *fileHeader, struct BMPInfo *fileInfo);
